@@ -25,7 +25,7 @@
     },
     {
       "step": "runPHP",
-      "code": "",
+      "code": "<?php\n\nrequire_once 'wordpress/wp-load.php';\n\n$chatrix_block = '<!-- wp:automattic/chatrix {\"instanceId\":\"2530674218113325\",\"defaultHomeserver\":\"matrix.lol\"} /-->';\n\n$sample_page_post_id = 2;\n\n$sample_page = get_post( $sample_page_post_id );\n\nwp_update_post( array(\n    'ID' => $sample_page_post_id,\n    'post_content' => $chatrix_block . '  ' . $sample_page->post_content\n) );",
       "progress": {
         "caption": "Doing the thing"
       }
