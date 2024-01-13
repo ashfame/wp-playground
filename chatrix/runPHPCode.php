@@ -2,7 +2,7 @@
 
 require_once 'wordpress/wp-load.php';
 
-$chatrix_block = '<!-- wp:automattic/chatrix {"instanceId":"2530674218113325","defaultHomeserver":"matrix.lol"} /-->';
+$chatrix_block = '<!-- wp:automattic/chatrix {"instanceId":"2530674218113325","defaultHomeserver":"matrix.org"} /-->';
 
 $sample_page_post_id = 2;
 
