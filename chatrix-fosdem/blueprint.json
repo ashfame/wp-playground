@@ -1,0 +1,34 @@
+{
+  "landingPage": "/welcome-to-fosdem/",
+  "preferredVersions": {
+    "php": "8.0",
+    "wp": "latest"
+  },
+  "steps": [
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "permalink_structure": "/%year%/%monthnum%/%day%/%postname%/"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "url",
+        "url": "https://blog.ashfame.com/a8c/chatrix-main.zip"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\n\nrequire_once 'wordpress/wp-load.php';\n\n$chatrix_block_welcome = '<!-- wp:paragraph --> <p>Below you can see \"Chatrix\" block in action. You can add it anywhere using either <code>/chatrix</code> or by looking up chatrix when choosing which block to insert.</p> <!-- /wp:paragraph --> <!-- wp:paragraph --> <p>Below you see <code>#infodesk:fosdem.org</code> room embedded.</p> <!-- /wp:paragraph -->  <!-- wp:automattic/chatrix {\"instanceId\":\"2530674218113325\",\"defaultHomeserver\":\"fosdem.org\",\"roomId\":\"#infodesk:fosdem.org\",\"enableServiceWorker\":false} /-->';\n$chatrix_block_fosdem = '<!-- wp:automattic/chatrix {\"instanceId\":\"2530674218113325\",\"defaultHomeserver\":\"fosdem.org\",\"roomId\":\"#infodesk:fosdem.org\",\"enableServiceWorker\":false} /-->';\n$chatrix_block_coffee = '<!-- wp:automattic/chatrix {\"instanceId\":\"2530674218113325\",\"defaultHomeserver\":\"fosdem.org\",\"roomId\":\"#cafe:fosdem.org\",\"enableServiceWorker\":false} /-->';\n$chatrix_block_beer = '<!-- wp:automattic/chatrix {\"instanceId\":\"2530674218113325\",\"defaultHomeserver\":\"fosdem.org\",\"roomId\":\"#beerevent:fosdem.org\",\"enableServiceWorker\":false} /-->';\n\nwp_delete_post( 2 );\n\nwp_update_post( array(\n    'ID' => 3,\n    'post_title' => 'Welcome to FOSDEM!',\n    'post_name' => 'welcome-to-fosdem',\n    'post_content' => $chatrix_block_welcome\n) );\n\nwp_insert_post( array(\n    'ID' => 4,\n    'post_title' => '#fosdem:fosdem.org',\n    'post_type' => 'page',\n    'post_status' => 'publish',\n    'post_name' => 'fosdem',\n    'post_content' => $chatrix_block_fosdem\n) );\n\nwp_insert_post( array(\n    'ID' => 5,\n    'post_title' => '#cafe:fosdem.org',\n    'post_type' => 'page',\n    'post_status' => 'publish',\n    'post_name' => 'cafe',\n    'post_content' => $chatrix_block_coffee\n) );\n\n\nwp_insert_post( array(\n    'ID' => 6,\n    'post_title' => '#beerevent:fosdem.org',\n    'post_type' => 'page',\n    'post_status' => 'publish',\n    'post_name' => 'IsItBeerOClockYet?',\n    'post_content' => $chatrix_block_beer\n) );",
+      "progress": {
+        "caption": "Setting up Chatrix instances"
+      }
+    }
+  ]
+}
